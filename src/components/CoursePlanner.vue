@@ -88,9 +88,9 @@ export default {
         v-for="(week, index) in weeksToBeSelected"
         :key="week"
       >
-        <thead>
-          <h3>{{ week }}</h3>
-          <tr>
+      <thead>
+        <h3>{{ week }}</h3>
+        <tr>
             <th>时间段</th>
             <th v-for="day in WEEKDAYS" :key="day">{{ day }}</th>
           </tr>
