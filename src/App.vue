@@ -1,21 +1,15 @@
 <script>
-import AllCourses from './components/AllCourses.vue';
-import CoursePlanner from './components/CoursePlanner.vue';
 
 export default {
-  data() {
-    return {
-      currentPage: 'all-courses',
-    };
-  },
   computed: {
-    currentComponent() {
-      return this.currentPage === 'all-courses' ? AllCourses : CoursePlanner;
+    currentRoute() {
+      console.log(this.$route.path);
+      return this.$route.path;
     },
   },
   methods: {
-    navigateTo(page) {
-      this.currentPage = page;
+    navigateTo(route) {
+      this.$router.push(route);
     },
   },
 };
@@ -25,12 +19,14 @@ export default {
   <div id="app" class="app-container">
     <aside class="sidebar">
       <ul>
-        <li @click="navigateTo('all-courses')" :class="{ active: currentPage === 'all-courses' }">全部课程</li>
-        <li @click="navigateTo('course-planner')" :class="{ active: currentPage === 'course-planner' }">课程规划</li>
+        <li @click="navigateTo('/allCourses')" :class="{ active: currentRoute === '/allCourses' }">全部课程</li>
+        <li @click="navigateTo('/planCourse')" :class="{ active: currentRoute === '/planCourse' }">课程规划</li>
+        <li @click="navigateTo('/planFastCourse')" :class="{ active: currentRoute === '/planFastCourse' }">最快课程规划</li>
+        <li @click="navigateTo('/planWithTimeLimit')" :class="{ active: currentRoute === '/planWithTimeLimit' }">时间限制课程规划</li>
       </ul>
     </aside>
     <main class="main-content">
-      <component :is="currentComponent"/>
+      <router-view />
     </main>
   </div>
 </template>
